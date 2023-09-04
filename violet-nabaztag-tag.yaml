@@ -10,7 +10,7 @@ esphome:
   min_version: 2023.8.2
   project:
     name: Violet.Karotz
-    version: "1.0"
+    version: "1.0.1"
 
 esp32:
   board: esp32dev
@@ -107,3 +107,21 @@ voice_assistant:
     - delay: 1500ms
     - switch.turn_off: left_ear
     - switch.turn_off: right_ear
+
+output:
+  - platform: ledc
+    id: rgb_r
+    pin: GPIO12
+  - platform: ledc
+    id: rgb_g
+    pin: GPIO13
+  - platform: ledc
+    id: rgb_b
+    pin: GPIO15
+
+light:
+  - platform: rgb
+    name: "LED"
+    red: rgb_r
+    green: rgb_g
+    blue: rgb_b
