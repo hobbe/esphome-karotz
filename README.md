@@ -21,7 +21,7 @@ substitutions:
   wifi_ap_password: ap_password
 
 packages:
-  violet.nabaztag-tag: github://bemble/esphome-nabaztag/violet-nabaztag-tag.yaml@main
+  violet.nabaztag-tag: github://obagot/esphome-karotz/violet-nabaztag-tag.yaml@karotz
 
 esphome:
 ```
