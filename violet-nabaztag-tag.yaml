@@ -10,7 +10,7 @@ esphome:
   min_version: 2023.8.2
   project:
     name: Violet.Karotz
-    version: "1.0.2"
+    version: "1.1.0"
 
 esp32:
   board: esp32dev
@@ -23,6 +23,8 @@ ota:
 
 dashboard_import:
   package_import_url: github://hobbe/esphome-karotz/violet-nabaztag-tag.yaml@karotz
+  import_full_config: false
+
 wifi:
   ap:
     ssid: "${friendly_name} Hotspot"
