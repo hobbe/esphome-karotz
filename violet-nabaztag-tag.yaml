@@ -10,7 +10,7 @@ esphome:
   min_version: 2023.8.2
   project:
     name: Violet.Karotz
-    version: "1.1.0"
+    version: "1.1.1"
 
 esp32:
   board: esp32dev
@@ -113,13 +113,13 @@ voice_assistant:
 output:
   - platform: ledc
     id: rgb_r
-    pin: GPIO12
+    pin: GPIO35
   - platform: ledc
     id: rgb_g
-    pin: GPIO13
+    pin: GPIO32
   - platform: ledc
     id: rgb_b
-    pin: GPIO15
+    pin: GPIO33
 
 light:
   - platform: rgb
