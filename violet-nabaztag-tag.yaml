@@ -113,7 +113,7 @@ voice_assistant:
 output:
   - platform: ledc
     id: rgb_r
-    pin: GPIO35
+    pin: GPIO4
   - platform: ledc
     id: rgb_g
     pin: GPIO32
