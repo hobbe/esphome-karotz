@@ -10,7 +10,7 @@ esphome:
   min_version: 2023.8.2
   project:
     name: Violet.Karotz
-    version: "1.1.1"
+    version: "1.1.2"
 
 esp32:
   board: esp32dev
@@ -127,6 +127,7 @@ light:
     red: rgb_r
     green: rgb_g
     blue: rgb_b
+    restore_mode: RESTORE_DEFAULT_ON
 
 button:
   - platform: restart
