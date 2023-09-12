@@ -10,7 +10,7 @@ esphome:
   min_version: 2023.8.2
   project:
     name: Violet.Karotz
-    version: "1.1.4"
+    version: "1.1.5"
 
 esp32:
   board: esp32dev
