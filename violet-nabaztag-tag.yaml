@@ -67,6 +67,8 @@ microphone:
     pdm: false
 
 binary_sensor:
+  - platform: status
+    name: "Status"
   - platform: gpio
     pin:
       number: GPIO25
@@ -134,3 +136,7 @@ light:
 button:
   - platform: restart
     name: "Restart"
+
+sensor:
+  - platform: uptime
+    name: "Uptime"
