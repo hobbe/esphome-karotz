@@ -69,16 +69,16 @@ microphone:
 binary_sensor:
   - platform: status
     name: "Status"
-  - platform: gpio
-    pin:
-      number: GPIO35
-      mode: INPUT_PULLUP
-      inverted: True
-    name: "Head button"
-    on_press:
-      - voice_assistant.start:
-    on_release:
-      - voice_assistant.stop:
+  # - platform: gpio
+  #   pin:
+  #     number: GPIO35
+  #     mode: INPUT_PULLUP
+  #     inverted: True
+  #   name: "Head button"
+  #   on_press:
+  #     - voice_assistant.start:
+  #   on_release:
+  #     - voice_assistant.stop:
  
 switch:
   - platform: gpio
