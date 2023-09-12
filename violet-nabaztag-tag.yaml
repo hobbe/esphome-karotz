@@ -125,6 +125,7 @@ output:
 
 light:
   - platform: rgb
+    id: "led"
     name: "LED"
     red: rgb_r
     green: rgb_g
