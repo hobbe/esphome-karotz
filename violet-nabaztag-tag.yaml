@@ -128,6 +128,8 @@ light:
     green: rgb_g
     blue: rgb_b
     restore_mode: RESTORE_DEFAULT_ON
+    effects:
+      - pulse:
 
 button:
   - platform: restart
