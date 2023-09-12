@@ -21,6 +21,7 @@ Original idea by [bemble (esphome-nabaztag)](https://github.com/bemble/esphome-n
 
 | ESP32 | Component |
 |---|---|
+| GPIO13 | Head button (+) |
 | GPIO14 | INMP441 SCK |
 | GPIO18 | MAX98357 LRC |
 | GPIO19 | MAX98357 BCLK |
@@ -32,7 +33,6 @@ Original idea by [bemble (esphome-nabaztag)](https://github.com/bemble/esphome-n
 | GPIO27 | INMP441 WS |
 | GPIO32 | RGB - G |
 | GPIO33 | RGB - B |
-| GPIO35 | Head button (+) |
 | GND | INMP441 GND |
 | GND | INMP441 L/R |
 | GND | MAX98357 GND |
