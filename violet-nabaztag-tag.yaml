@@ -1,17 +1,19 @@
 substitutions:
-  name: "violet-nabaztag-tag"
-  friendly_name: "Violet Nabaztag Tag"
+  name: "violet-karotz"
+  friendly_name: "Karotz"
   wifi_ap_password: ""
 
 esphome:
   name: ${name}
   friendly_name: ${friendly_name}
+  comment: Violet Karotz
+  min_version: 2023.8.2
   project:
-    name: violet.nabaztag-tag
-    version: "1.0"
+    name: Violet.Karotz
+    version: "1.1.5"
 
 esp32:
-  board: az-delivery-devkit-v4
+  board: esp32dev
   framework:
     type: arduino
 
@@ -20,10 +22,12 @@ api:
 ota:
 
 dashboard_import:
-  package_import_url: github://bemble/esphome-nabaztag/violet-nabaztag-tag.yaml@main
+  package_import_url: github://hobbe/esphome-karotz/violet-nabaztag-tag.yaml@karotz
+  import_full_config: false
 
 wifi:
   ap:
+    ssid: "${friendly_name} Hotspot"
     password: "${wifi_ap_password}"
 
 captive_portal:
@@ -32,18 +36,18 @@ improv_serial:
 
 i2s_audio:
   - id: i2s_out
-    i2s_lrclk_pin: GPIO18
-    i2s_bclk_pin: GPIO19
+    i2s_lrclk_pin: GPIO18 # MAX98357 / lrc
+    i2s_bclk_pin: GPIO19 # MAX98357 / bclk
   - id: i2s_in
-    i2s_lrclk_pin: GPIO27 #ws
-    i2s_bclk_pin: GPIO14 #clk
+    i2s_lrclk_pin: GPIO27 # INMP441 / ws
+    i2s_bclk_pin: GPIO14 # INMP441 / clk
 
 speaker:
   - platform: i2s_audio
     id: max98357_speaker
     dac_type: external
     i2s_audio_id: i2s_out
-    i2s_dout_pin: GPIO21
+    i2s_dout_pin: GPIO21 # MAX98357 / din
     mode: mono
 
 media_player:
@@ -57,15 +61,17 @@ media_player:
 microphone:
   - platform: i2s_audio
     i2s_audio_id: i2s_in
-    i2s_din_pin: GPIO26 #sd
+    i2s_din_pin: GPIO26 # INMP441 / sd
     id: inmp441_mic
     adc_type: external
     pdm: false
 
 binary_sensor:
+  - platform: status
+    name: "Status"
   - platform: gpio
     pin:
-      number: GPIO23
+      number: GPIO13
       mode: INPUT_PULLUP
       inverted: True
     name: "Head button"
@@ -79,19 +85,59 @@ switch:
     name: "Left ear"
     id: "left_ear"
     pin: GPIO22
+  - platform: gpio
+    name: "Right ear"
+    id: "right_ear"
+    pin: GPIO23
 
 voice_assistant:
   microphone: inmp441_mic
   speaker: max98357_speaker
   on_tts_end:
     - switch.turn_on: left_ear
+    - switch.turn_on: right_ear
     - delay: 3000ms
     - switch.turn_off: left_ear
+    - switch.turn_off: right_ear
   on_error:
     - switch.turn_on: left_ear
+    - switch.turn_on: right_ear
     - delay: 1500ms
     - switch.turn_off: left_ear
+    - switch.turn_off: right_ear
     - delay: 500ms
     - switch.turn_on: left_ear
+    - switch.turn_on: right_ear
     - delay: 1500ms
     - switch.turn_off: left_ear
+    - switch.turn_off: right_ear
+
+output:
+  - platform: ledc
+    id: rgb_r
+    pin: GPIO25
+  - platform: ledc
+    id: rgb_g
+    pin: GPIO32
+  - platform: ledc
+    id: rgb_b
+    pin: GPIO33
+
+light:
+  - platform: rgb
+    id: "led"
+    name: "LED"
+    red: rgb_r
+    green: rgb_g
+    blue: rgb_b
+    restore_mode: RESTORE_DEFAULT_ON
+    effects:
+      - pulse:
+
+button:
+  - platform: restart
+    name: "Restart"
+
+sensor:
+  - platform: uptime
+    name: "Uptime"
